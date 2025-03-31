@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MyPic from "./images/UtkarshSorathia.CO.2024.png";
 import { ReactTyped } from "react-typed";
 import { Link } from "react-router-dom";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import ContactGif from "./images/contact.gif";
 import DownArrow from "./images/down.gif";
 import "../App.css";
+import axios from "axios";
 
 const Main = () => {
   const [name, setName] = useState("");
@@ -79,6 +80,19 @@ const Main = () => {
       });
     }
   };
+
+  const getLocations = async () => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}`
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    getLocations();
+  }, []);
   return (
     <>
       <div>
